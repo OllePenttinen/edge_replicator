@@ -1,8 +1,7 @@
 {
   "title": "Function Replicator",
   "description": "Mirrors functions from source to destination installation based on wildcard patterns",
-  "type": "object",
-  "properties": {
+  "input": {
     "destination_installation": {
       "type": "string",
       "title": "Destination Installation ID",
@@ -21,5 +20,16 @@
       "default": ["sensor.*", "relay.*"]
     }
   },
-  "required": ["destination_installation", "api_key"]
+  "required": ["destination_installation", "api_key", "function_patterns"],
+  "guide": [
+    {
+      "title": "Parameter selection",
+      "description": "Set the parameters you want to use.",
+      "input_fields": [
+		  "destination_installation",
+		  "api_key",
+		  "function_patterns"
+      ]
+    }
+  ]
 } 
