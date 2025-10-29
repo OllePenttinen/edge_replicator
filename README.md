@@ -17,7 +17,7 @@ When values are updated:
 3. Matching functions are copied or deleted in Installation B based on their value.
 
 ## Deployment
-1. Create a new Edge App in IoT Open.
+1. Create a new Edge App.
 2. Upload `app.lua` and `config.json`.
 3. Publish a version.
 4. Deploy to your edge gateway on Installation A.
