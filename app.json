@@ -8,20 +8,13 @@
       "name": "Destination Installation ID",
       "description": "ID of the target installation where matching functions will be created or deleted"
     },
-    "api_key": {
+    "function_patterns": {
       "required": true,
       "type": "string",
-      "name": "API Key for Destination Installation",
-      "description": "A user API key with permission to create or delete functions in the destination installation"
-    }//,
-    // "function_patterns": {
-    //   "required": true,
-    //   "type": "array",
-    //   "name": "Function patterns to monitor",
-    //   "description": "Wildcard patterns (using * and ?) for functions to replicate",
-    //   "items": { "type": "string" },
-    //   "default": ["sensor.*", "relay.*"]
-    //}
+      "name": "Function patterns to monitor",
+      "description": "Comma separated list of wildcard patterns (using * and ?) for functions to replicate",
+      "default": "sensor.*,relay.*"
+}
   },
   "guide": [
     {
@@ -29,8 +22,7 @@
       "description": "Set the parameters you want to use.",
       "input_fields": [
 		  "destination_installation",
-		  "api_key"//,
-		  //"function_patterns"
+		  "function_patterns"
       ]
     }
   ]

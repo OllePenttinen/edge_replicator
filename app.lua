@@ -5,7 +5,20 @@ log  = require("log")
 
 local cfg = cfg or {}
 local destination = cfg.destination_installation
-local patterns = cfg.function_patterns or {}
+local patterns_str = cfg.function_patterns or ""
+
+local function parse_patterns(str)
+  local result = {}
+  for pattern in string.gmatch(str, '([^,]+)') do
+    local trimmed = pattern:match("^%s*(.-)%s*$") -- trim spaces
+    if trimmed ~= "" then
+      table.insert(result, trimmed)
+    end
+  end
+  return result
+end
+
+local patterns = parse_patterns(patterns_str)
 
 local function wildcard_to_pattern(w)
   local p = w:gsub("([%%%^%$%(%)%.%[%]%+%-%?])", "%%%1")
