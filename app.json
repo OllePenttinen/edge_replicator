@@ -1,7 +1,7 @@
 {
   "id": "edge-app-function-replicator",
   "name": "Function Replicator",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "author": "Olle Penttinen",
   "url": "https://github.com/OllePenttinen/edge_replicator.git",
   "description": "Mirrors functions from source to destination installation based on wildcard patterns",
@@ -37,8 +37,6 @@
       "description": "Set the parameters you want to use.",
       "input_fields": [
         "test_param"
-        // "destination_installation",
-        // "function_patterns"
       ]
     }
   ]
