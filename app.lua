@@ -12,7 +12,7 @@ local function wildcard_to_pattern(w)
   p = p:gsub("%%%*", ".*")
   p = p:gsub("%%%?", ".")
   return "^" .. p .. "$"
-end
+end 
 
 local compiled_patterns = {}
 for _, pat in ipairs(patterns) do
