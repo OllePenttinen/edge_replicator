@@ -1,17 +1,19 @@
 {
-  "title": "Function Replicator",
-  "description": "Mirrors functions between installations based on value and wildcard matching.",
+  "title": "Function Replicator configuration",
+  "type": "object",
   "properties": {
     "destination_installation": {
       "type": "string",
-      "title": "Destination Installation ID",
-      "default": ""
+      "title": "Destination installation ID",
+      "description": "The installation to replicate functions to"
     },
     "function_patterns": {
       "type": "array",
+      "title": "Function patterns",
+      "description": "List of function IDs or wildcards to watch",
       "items": { "type": "string" },
-      "title": "Function patterns to monitor (supports * and ? wildcards)",
-      "default": ["sensor.temperature.*"]
+      "default": ["sensor.*", "relay.*"]
     }
-  }
+  },
+  "required": ["destination_installation"]
 }
