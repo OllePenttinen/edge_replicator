@@ -22,4 +22,4 @@
     }
   },
   "required": ["destination_installation", "api_key"]
-}
+} 
