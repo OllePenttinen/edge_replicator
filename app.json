@@ -1,7 +1,7 @@
 {
   "title": "Function Replicator",
   "description": "Mirrors functions from source to destination installation based on wildcard patterns",
-  "input": {
+  "config": {
     "destination_installation": {
       "required": true,
       "type": "string",
