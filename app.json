@@ -1,23 +1,25 @@
 {
   "id": "edge-app-function-replicator",
   "name": "Function Replicator",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "author": "Olle Penttinen",
   "url": "https://github.com/OllePenttinen/edge_replicator.git",
   "description": "Mirrors functions from source to destination installation based on wildcard patterns",
 
-  "destination_installation": {
-    "name": "Destination Installation ID",
-    "description": "ID of the target installation where matching functions will be created or deleted",
-    "type": "string",
-    "required": true
-  },
-  "function_patterns": {
-    "name": "Function patterns to monitor",
-    "description": "Comma separated list of wildcard patterns (using * and ?) for functions to replicate",
-    "type": "string",
-    "required": true,
-    "default": "sensor.*,relay.*"
+  "parameters": {
+    "destination_installation": {
+      "name": "Destination Installation ID",
+      "type": "string",
+      "required": true,
+      "description": "ID of the target installation where matching functions will be created or deleted"
+    },
+    "function_patterns": {
+      "name": "Function patterns to monitor",
+      "type": "string",
+      "required": true,
+      "default": "sensor.*,relay.*",
+      "description": "Comma separated list of wildcard patterns (using * and ?) for functions to replicate"
+    }
   },
 
   "guide": [
