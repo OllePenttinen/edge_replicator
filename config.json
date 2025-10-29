@@ -1,19 +1,25 @@
 {
-  "title": "Function Replicator configuration",
+  "title": "Function Replicator",
+  "description": "Mirrors functions from source to destination installation based on wildcard patterns",
   "type": "object",
   "properties": {
     "destination_installation": {
       "type": "string",
-      "title": "Destination installation ID",
-      "description": "The installation to replicate functions to"
+      "title": "Destination Installation ID",
+      "description": "ID of the target installation where matching functions will be created or deleted"
+    },
+    "api_key": {
+      "type": "string",
+      "title": "API Key for Destination Installation",
+      "description": "A user API key with permission to create or delete functions in the destination installation"
     },
     "function_patterns": {
       "type": "array",
-      "title": "Function patterns",
-      "description": "List of function IDs or wildcards to watch",
+      "title": "Function patterns to monitor",
+      "description": "Wildcard patterns (using * and ?) for functions to replicate",
       "items": { "type": "string" },
       "default": ["sensor.*", "relay.*"]
     }
   },
-  "required": ["destination_installation"]
+  "required": ["destination_installation", "api_key"]
 }
