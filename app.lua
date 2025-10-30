@@ -3,8 +3,9 @@ edge = require("edge")
 lynx = require("edge.lynx")
 log  = require("log")
 
-local cfg = cfg or {}
+local cfg = config or {}
 local destination = cfg.destination_installation
+local api_key = cfg.api_key
 local patterns_str = cfg.function_patterns or ""
 
 local function parse_patterns(str)
@@ -40,6 +41,20 @@ local function matches_pattern(func_name)
   return false
 end
 
+---------------------------------------------------------------------
+-- Helper: API call with API key (uses central IoT-Open cloud API)
+---------------------------------------------------------------------
+local function cloud_api_call(method, url, body)
+  local headers = {
+    ["Authorization"] = "Bearer " .. api_key,
+    ["Content-Type"]  = "application/json"
+  }
+  -- Full IoT-Open API URL
+  local full_url = "https://lynx.iotopen.se" .. url
+  return lynx.http(method, full_url, body and json.encode(body) or nil, headers)
+end
+
+
 local function copy_function_to_destination(fn)
   if not destination then
     log.error("EdgeApp", "Destination installation not configured")
@@ -55,13 +70,14 @@ local function copy_function_to_destination(fn)
   }
 
   log.info("EdgeApp", "Copying function %s (value=%s) to %s", fn.name, tostring(fn.value), destination)
-  local res, code, err = lynx.apiCall("PUT", url, payload)
+  local res, code, err = cloud_api_call("PUT", url, payload)
   if code and code >= 200 and code < 300 then
     log.info("EdgeApp", "Successfully updated function %s on %s", fn.name, destination)
   else
     log.error("EdgeApp", "Failed to copy function %s: %s (%s)", fn.name, tostring(err), tostring(code))
   end
 end
+
 
 local function delete_function_from_destination(fn)
   if not destination then
@@ -71,13 +87,14 @@ local function delete_function_from_destination(fn)
 
   local url = string.format("/api/v2/installation/%s/functions/%s", destination, fn.id)
   log.info("EdgeApp", "Deleting function %s from %s", fn.name, destination)
-  local _, code, err = lynx.apiCall("DELETE", url)
+  local _, code, err = cloud_api_call("DELETE", url)
   if code and code >= 200 and code < 300 then
     log.info("EdgeApp", "Function %s removed from %s", fn.name, destination)
   else
     log.error("EdgeApp", "Failed to delete %s: %s (%s)", fn.name, tostring(err), tostring(code))
   end
 end
+
 
 local function onFunctionValueUpdated(f)
   if not f or not f.name then return end

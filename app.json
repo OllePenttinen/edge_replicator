@@ -13,6 +13,12 @@
       "required": true,
       "description": "ID of the target installation where matching functions will be created or deleted"
     },
+    "api_key": { 
+      "name": "API key",
+      "type": "text", 
+      "required": true, 
+      "description": "API key that needs to be provided to be able to interact with target installation"
+    },
     "function_patterns": {
       "name": "Function patterns to monitor",
       "type": "text",
@@ -28,6 +34,7 @@
       "description": "Set the parameters you want to use.",
       "input_fields": [
         "destination_installation",
+        "api_key",
         "function_patterns"
       ]
     }
